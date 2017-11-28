@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User registration</title>
+	<title>User modifier</title>
 </head>
 <body>
-	<h1>Welcome to the registration form of the 2nd Project of WebProgramming!<br></h1>
+	<h1>Welcome to the modifier form of the 2nd Project of WebProgramming!<br></h1>
 	<form>
 		<fieldset>
 			<label>
