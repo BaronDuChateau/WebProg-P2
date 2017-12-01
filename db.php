@@ -35,38 +35,6 @@ function user_add($conn, $firstname, $lastname, $email, $password) {
 	}
 }
 
-function user_auth($conn, $email, $pass) {
-	try {
-	    // Check that user exists
-		$test = $conn->prepare("SELECT user_id FROM user WHERE Email = '$email'"); 
-	    $test->execute();
-	    $users = $test->fetchAll();
-		// If user exists, fetch password salt and hash
-	    if (count($users) > 0) {
-	    	$id = $users[0][0]; // UserID will be the only field in the only record
-	    	
-			$auth = $conn->prepare("SELECT Password FROM user WHERE user_id = '$id'");
-	    	$auth->execute();
-	    	$data = $auth->fetchAll();
-	    	if ($data[0][0] == $pass) {
-	    		$give = $conn->prepare("SELECT Password FROM user WHERE user_id = '$id'");
-	    		$give->execute();
-	    		$data = $give->fetchAll();
-	    		return $data;
-	    	}
-	 		else {
-	 			return null;
-	 		}
-	    }
-	    else {
-	    	return null;
-	    }
-	}
-	catch (PDOException $e) {
-	    echo "Error: " . $e->getMessage();
-	}
-}
-
 function user_get($conn, $id) {
 	try {
 	    $sql = $conn->prepare("SELECT UserID, Username FROM UserInfo WHERE UserID = '$id'"); 

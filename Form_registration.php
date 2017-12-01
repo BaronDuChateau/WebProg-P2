@@ -12,7 +12,7 @@
 <body>
 	<h1>Welcome to the registration form of the 2nd Project of WebProgramming!<br></h1>
 	<h2>Already have a login? Click <a href="Form_login.php">here</a><br></h2>
-	<form method="post" >
+	<form method="post">
 		<fieldset>
 			<label>
 				Firstname : <input type="text" name="firstname" placeholder="Your firstname" /><br>
@@ -45,6 +45,7 @@
 
 				user_add($conn, $current_user->getFirstname(), $current_user->getLastname(), $current_user->getEmail(), $current_user->getPassword());
 				echo "<br>The function firstname given is : " . $current_user->getFirstname() . "<br>The function lastname is : " . $current_user->getLastname() . "<br>The function email is : " . $current_user->getEmail() . "<br>The function password is : " . $current_user->getPassword() . "<br>";
+				echo 'You can now <a href="Form_login.php">login</a>!';
 
 			}
 			else echo "<br>Please match your password<br>";
