@@ -8,14 +8,14 @@ function db_connect($servername, $username, $password, $dbname) {
 	    return $conn;
 	}
 	catch(PDOException $e) {
-	    echo "Connection failed: " . $e­->getMessage();
+	    echo "Connection failed: " . $e->getMessage();
 	}
 }
 
 function user_update_other($conn, $firstname, $lastname, $email, $password) {
 	try {
 		$sql = $conn->prepare("UPDATE user SET Firstname = '$firstname', Lastname = '$lastname', Password = '$password' WHERE Email = '$email'");
-		sql->execute();
+		$sql->execute();
 		echo "Database updated"; 
 	}
 	catch(PDOException $e)
