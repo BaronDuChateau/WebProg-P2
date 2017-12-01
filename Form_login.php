@@ -38,6 +38,9 @@
 	if(isset($_POST['email'])) {
 		$data = user_auth($conn, $_POST['email'], $_POST['password']);
 		echo "<br>" . $data['Lastname'] . "<br>" . $data['Firstname'] . "<br>" . $data['Email'] . "<br>". $data['Password'] . "<br>Click <a href='Form_modifier.php'>here</a> to modify your values<br>";
+		$current_user = new User($data['Firstname'], $data['Lastname'], $data['Email'], $data['Password']);
+		$_SESSION['user'] = $current_user;
+		echo "<br>" . $_SESSION['user']->getFirstname() . "<br>" . $_SESSION['user']->getLastname() . "<br>" . $_SESSION['user']->getEmail() . "<br>". $_SESSION['user']->getPassword() . "<br>";
 	}
 ?>
 <!DOCTYPE html>
