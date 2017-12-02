@@ -3,6 +3,16 @@
 	session_start();
 	require 'db.php';
 	$conn = db_connect("localhost", "root", "", "Assignment2");
+
+	$date = date("F j, Y, G:i:s");
+		$time = time() + (60 * 60 * 24 * 7);
+		$lastlogin = '';
+		if (isset($_COOKIE['lastlogin'])) {
+			$lastlogin = $_COOKIE['lastlogin'];
+			echo "<h1>Dear " . $_SESSION['user']->getFirstname() . " " . $_SESSION['user']->getLastname() . " your last login was on : " . $_COOKIE['lastlogin'] . "</h1><br>";
+		}
+		else echo "This is your first login according to your cookies! Welcome " .  $_SESSION['user']->getFirstname() . " " . $_SESSION['user']->getLastname() . "! <br>";
+		setcookie('lastlogin', $date, $time);
 ?>
 <!DOCTYPE html>
 <html>
