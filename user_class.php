@@ -5,10 +5,10 @@
 	    // Property declarations
 
 	    private $firstname; // string
-	    private $lastname; // position
-	    private $password;
+	    private $lastname; // string
+	    private $password; // string
 	    private $email; // string
-	    private $id;
+	    private $id; // int
 
 	    // Constructor
 	    function __construct($firstname, $lastname, $password, $email, $id) {
@@ -45,7 +45,7 @@
 	        return $this->lastname;
 	    }
 
-	    public function getEmail() { // position
+	    public function getEmail() { // string
 	        return $this->email;
 	    }
 
@@ -53,7 +53,7 @@
 	        return $this->password;
 	    }
 
-	    public function getId() {
+	    public function getId() { // Int
 	    	return $this->id;
 	    }
 	}

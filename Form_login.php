@@ -10,6 +10,8 @@
 <html>
 <head>
 	<title>User login</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h1>Welcome to the login form of the 2nd Project of WebProgramming!<br></h1>
@@ -25,17 +27,15 @@
 		<input type="submit" name="submit">
 	</form>
 	<?php
-		/**
-		* This part sets the cookie if not already set and display the last login date and time
-		*/
-		if(isset($_POST['email'])) {
-			//Verification of the mail and password
-			$data = user_auth($conn, $_POST['email'], $_POST['password']);
 
+		if(isset($_POST['email'])) {
+			// We check if the email & password match something in the database
+			$data = user_auth($conn, $_POST['email'], $_POST['password']); 
 			// Setting the session variable
 			$current_user = new User($data['Firstname'], $data['Lastname'], $data['Password'], $data['Email'], $data['user_id']);
 			$_SESSION['user'] = $current_user;
 		}
 	?>
+	<p>Not registered? Click <a href="Form_registration.php">here</a>! :)</p>
 </body>
 </html>

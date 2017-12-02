@@ -65,6 +65,9 @@ function user_update_other($conn, $firstname, $lastname, $email, $password, $id)
 		echo "Error: " .$e->getMessage();
 	}
 }
+/**
+* Add a user to the database
+*/
 function user_add($conn, $firstname, $lastname, $email, $password) {
 	try {
 		$sql = $conn->prepare("INSERT INTO user (user_id, Firstname, Lastname, Email, Password) VALUES (null, :firstname, :lastname, :email, :password)");
@@ -79,17 +82,4 @@ function user_add($conn, $firstname, $lastname, $email, $password) {
 	    echo "Error: " . $e->getMessage();
 	}
 }
-
-function user_get($conn, $email) {
-	try {
-	    $sql = $conn->prepare("SELECT Firstname, Lastname, Email, Password FROM UserInfo WHERE Email = '$email'"); 
-	    $sql->execute();
-	    $result = $sql->fetch();
-	    return $result;
-	}
-	catch (PDOException $e) {
-	    echo "Error: " . $e->getMessage();
-	}
-}
-
 ?>

@@ -1,9 +1,12 @@
 <?php
 	require 'user_class.php';
-	session_start();
 	require 'db.php';
-	$conn = db_connect("localhost", "root", "", "Assignment2");
 
+	session_start();
+	$conn = db_connect("localhost", "root", "", "Assignment2");
+	/**
+	* We set up cookies if not already, then display a message
+	*/
 	$date = date("F j, Y, G:i:s");
 		$time = time() + (60 * 60 * 24 * 7);
 		$lastlogin = '';
@@ -18,6 +21,8 @@
 <html>
 <head>
 	<title>User modifier</title>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
 </head>
 <body>
 	<h1>Welcome to the modifier form of the 2nd Project of WebProgramming!<br></h1>
@@ -42,6 +47,9 @@
 		<input type="submit" name="submit">
 	</form>
 	<?php
+	/**
+	* If a field changes, we display it to the user and we change it in the database
+	*/
 		if(isset($_POST['firstname'])) {
 			if ($_POST['firstname'] != $_SESSION['user']->getFirstname()) {
 					echo "Your first name was changed from " . $_SESSION['user']->getFirstname() . " to " . $_POST['firstname'] . "<br>";
