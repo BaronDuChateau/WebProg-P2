@@ -8,5 +8,6 @@ CREATE TABLE user (
 	Firstname VARCHAR(32) NOT NULL,
 	Lastname VARCHAR(32) NOT NULL,
 	Password VARCHAR(32) NOT NULL,
-	Email VARCHAR(32) NOT NULL
+	Email VARCHAR(32) NOT NULL,
+	Unique(Email)
 );

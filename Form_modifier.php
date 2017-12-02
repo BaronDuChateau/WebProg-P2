@@ -1,15 +1,5 @@
 <?php
-	session_start();
-	$date = date("F j, Y, G:i:s");
-	$time = time() + (60 * 60 * 24 * 7);
-	$lastlogin = '';
-	echo isset($_COOKIE['lastlogin']);
-	if (isset($_COOKIE['lastlogin'])) {
-		$lastlogin = $_COOKIE['lastlogin'];
-		echo "Your last login was on : " . $_COOKIE['lastlogin'] . "<br>";
-	}
-	else echo "This is your first login according to your cookies! Welcome! <br>";
-	setcookie('lastlogin', $date, $time);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,5 +28,6 @@
 		</fieldset>
 		<input type="submit" name="submit">
 	</form>
+	<p><a href="logout.php">Logout</a></p>
 </body>
 </html>
