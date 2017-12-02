@@ -22,19 +22,19 @@
 		<form method="post">
 			<fieldset>
 				<label>
-					Firstname : <input type="text" name="firstname" placeholder="Your firstname" /><br>
+					Firstname : <input type="text" name="firstname" placeholder="Your firstname" required /><br>
 				</label>
 				<label>
-					Last Name : <input type="text" name="lastname" placeholder="Your lastname" /><br>
+					Last Name : <input type="text" name="lastname" placeholder="Your lastname" required /><br>
 				</label>
 				<label>
-					Email : <input type="Email" name="email" placeholder="Your email" /><br>
+					Email : <input type="Email" name="email" placeholder="Your email" required/><br>
 				</label>
 				<label>
-					Password : <input type="password" name="password" placeholder="Your password" /><br>
+					Password : <input type="password" name="password" placeholder="Your password" required /><br>
 				</label>
 				<label>
-					Password confirmation : <input type="password" name="password-confirm" placeholder="Your password" /><br>
+					Password confirmation : <input type="password" name="password-confirm" placeholder="Your password" required/><br>
 				</label>
 			</fieldset>
 			<input type="submit" name="submit">
@@ -43,7 +43,7 @@
 		/**
 		* We create a new entry in the database if the form is filled and the passwords match
 		*/
-		if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-confirm'])) { // Filled form checking
+		if (isset($_POST['firstname'])) { // Filled form checking
 			if ($_POST['password'] == $_POST['password-confirm']) { // Password matching check
 				// $current_user = new User($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
 				// echo "<br>The post firstname given is : " . $_POST['firstname'] . "<br>The post lastname is : " . $_POST['lastname'] . "<br>The post email is : " . $_POST['email'] . "<br>The post password is : " . $_POST['password'] . "<br>";
@@ -53,7 +53,7 @@
 				$current_user->setEmail($_POST['email']);
 				$current_user->setPassword($_POST['password']);
 				*/
-				if (existence_check($conn, $_POST['email']) == 1)
+				if (existence_check($conn, $_POST['email']) == 1) // If the email already exists, we display an error message
 				{
 					echo 'Sorry, but an account with this address was already created.<br>Try again with an other mail address.<br>';
 				}

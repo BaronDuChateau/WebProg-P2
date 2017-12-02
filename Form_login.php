@@ -16,10 +16,10 @@
 	<form method="post">
 		<fieldset>
 			<label>
-				Email : <input type="Email" name="email" placeholder="hugo@borsier.fr" /><br>
+				Email : <input type="Email" name="email" placeholder="hugo@borsier.fr" required/><br>
 			</label>
 			<label>
-				Password : <input type="password" name="password" placeholder="12345" /><br>
+				Password : <input type="password" name="password" placeholder="12345" required /><br>
 			</label>
 		</fieldset>
 		<input type="submit" name="submit">
@@ -43,7 +43,7 @@
 			//echo "<br>" . $data['Lastname'] . "<br>" . $data['Firstname'] . "<br>" . $data['Email'] . "<br>". $data['Password'] . "<br>Click <a href='Form_modifier.php'>here</a> to modify your values<br>";
 
 			// Setting the session variable
-			$current_user = new User($data['Firstname'], $data['Lastname'], $data['Email'], $data['Password']);
+			$current_user = new User($data['Firstname'], $data['Lastname'], $data['Password'], $data['Email'], $data['user_id']);
 			$_SESSION['user'] = $current_user;
 			//echo "<br>" . $_SESSION['user']->getFirstname() . "<br>" . $_SESSION['user']->getLastname() . "<br>" . $_SESSION['user']->getEmail() . "<br>". $_SESSION['user']->getPassword() . "<br>";
 		}

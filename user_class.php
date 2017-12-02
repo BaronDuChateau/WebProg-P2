@@ -8,13 +8,15 @@
 	    private $lastname; // position
 	    private $password;
 	    private $email; // string
+	    private $id;
 
 	    // Constructor
-	    function __construct($firstname, $lastname, $password, $email) {
+	    function __construct($firstname, $lastname, $password, $email, $id) {
 	        $this->firstname = $firstname;
 	        $this->lastname = $lastname;
 	        $this->email = $email;
 	        $this->password = $password;
+	        $this->id = $id;
 	    }
 
 	    public function setFirstname($firstname) { // void
@@ -32,6 +34,7 @@
 	        $this->password = $password;
 	    }
 
+
 	    // Accessors
 
 	    public function getFirstname() { // string
@@ -48,6 +51,10 @@
 
 	    public function getPassword() { // string
 	        return $this->password;
+	    }
+
+	    public function getId() {
+	    	return $this->id;
 	    }
 	}
 ?>

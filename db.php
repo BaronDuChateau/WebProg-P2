@@ -24,6 +24,8 @@ function existence_check($conn, $email) {
 * This function permits to authentificate the user that tries to log in
 */
 function user_auth($conn, $email, $password) {
+	try 
+	{
 		$test = $conn->prepare("SELECT user_id FROM user WHERE Email = '$email'"); 
 	    $test->execute();
 	    $users = $test->fetchAll();
@@ -36,19 +38,27 @@ function user_auth($conn, $email, $password) {
 				$auth2->execute();
 				$data = $auth2->fetch();
 				echo "<br><h3>Welcome " . $data['Lastname'] . " " . $data['Firstname'] . "! You can modify your data <a href='Form_modifier.php'>here</a></h3>";
-	    		return $data;
-	    	}
-	    	else echo "<br>Wrong password, try again<br>";
-	    	return null;
-	    }
-	    else echo "<br>There are no $email in the email database!<br>";
-	    return null;
+			    return $data;
+			    }
+			else echo "<br>Wrong password, try again<br>";
+		   	return null;
+		}
+	else echo "<br>There are no $email in the email database!<br>";
+	return null;
 	}
-function user_update_other($conn, $firstname, $lastname, $email, $password) {
+	catch(PDOException $e)
+	{
+		echo "Error: " . $e->getMessage();
+	}
+}
+function user_update_other($conn, $firstname, $lastname, $email, $password, $id) {
 	try {
-		$sql = $conn->prepare("UPDATE user SET Firstname = '$firstname', Lastname = '$lastname', Password = '$password' WHERE Email = '$email'");
-		$sql->execute();
-		echo "Database updated"; 
+		$sql = $conn->prepare("UPDATE user SET Firstname = :firstname, Lastname = :lastname, Password = :password, Email = :email WHERE user_id = '$id'");
+		$sql->bindValue(':firstname', $firstname);
+        $sql->bindValue(':lastname', $lastname);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':password', $password);
+		$sql->execute(); 
 	}
 	catch(PDOException $e)
 	{
@@ -57,9 +67,12 @@ function user_update_other($conn, $firstname, $lastname, $email, $password) {
 }
 function user_add($conn, $firstname, $lastname, $email, $password) {
 	try {
-		$sql = $conn->prepare("INSERT INTO user (user_id, Firstname, Lastname, Email, Password) VALUES (null, '$firstname', '$lastname', '$email', '$password')");
+		$sql = $conn->prepare("INSERT INTO user (user_id, Firstname, Lastname, Email, Password) VALUES (null, :firstname, :lastname, :email, :password)");
+        $sql->bindValue(':firstname', $firstname);
+        $sql->bindValue(':lastname', $lastname);
+        $sql->bindValue(':email', $email);
+        $sql->bindValue(':password', $password);
 	    $sql->execute();
-	    echo "New record created successfully\n";
 	}
 	catch(PDOException $e)
 	    {
